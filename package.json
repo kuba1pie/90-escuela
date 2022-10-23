@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.3",
+    "@julr/unocss-preset-forms": "^0.0.2",
     "@typescript-eslint/parser": "^5.33.0",
     "@vitejs/plugin-vue": "^3.0.1",
     "@vue/test-utils": "^2.0.2",
@@ -34,6 +35,8 @@
     "sass": "^1.54.3",
     "simple-git-hooks": "^2.8.0",
     "typescript": "^4.7.4",
+    "unocss": "^0.45.30",
+    "unocss-preset-daisy": "^1.2.0",
     "unplugin-vue-components": "^0.22.0",
     "vite": "^3.0.4",
     "vite-plugin-pages": "^0.25.0",

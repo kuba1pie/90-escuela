@@ -3,12 +3,19 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
+import Unocss from 'unocss/vite'
+import { presetUno, transformerDirectives } from 'unocss'
+import presetDaisy from 'unocss-preset-daisy'
+import { presetForms } from '@julr/unocss-preset-forms'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-
+    Unocss({
+      transformers: [transformerDirectives()],
+      presets: [presetUno(), presetDaisy(), presetForms()],
+    }),
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: ['vue', 'vue-router', '@vueuse/head'],

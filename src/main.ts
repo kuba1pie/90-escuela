@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import './style.sass'
+import './style.scss'
+import 'uno.css'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createHead } from '@vueuse/head'
 import App from './App.vue'
