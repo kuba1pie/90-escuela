@@ -41,18 +41,17 @@ function catchError() {
 </script>
 
 <template>
-  <div id="c-EditItem" class="c-theForm card w-md text-center flex flex-col">
-    <input id="login" v-model="store.product.title" class="form-input text-center text-red" type="text">
-    <input id="login" v-model="store.product.description" class="form-input text-center text-red" type="text">
-    <input id="login" v-model="store.product.price" class="form-input text-center text-red" type="text">
-    <button
-      id="myBtn" class="btn" :class="{
-        error: store.status === 'error',
-        sending: store.status === 'sending',
-        success: store.status === 'success',
-        def: store.status === '',
-      }" type="button" @click="saveItem()"
-    >
+  <div id="c-EditItem" class="c-theForm card w-md text-center flex flex-col mx-auto my-10 b-2 p-2">
+    <h2>Edit Item</h2>
+    <input id="login" v-model="store.product.title" class="form-input text-center text-black" type="text">
+    <input id="login" v-model="store.product.description" class="form-input text-center text-black" type="text">
+    <input id="login" v-model="store.product.price" class="form-input text-center text-black" type="text">
+    <button id="myBtn" class="btn" :class="{
+      error: store.status === 'error',
+      sending: store.status === 'sending',
+      success: store.status === 'success',
+      def: store.status === '',
+    }" type="button" @click="saveItem()">
       {{ store.statusButton }}
     </button>
   </div>

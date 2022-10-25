@@ -13,10 +13,11 @@ export interface Category {
 }
 
 export interface Product {
-  id: number
+  id?: number
   title: string
   price: number
   description: string
   category: Category
+  categoryId?: number
   images: string[]
 }
