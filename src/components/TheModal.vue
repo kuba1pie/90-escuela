@@ -1,10 +1,9 @@
 <script setup lang="ts">
 const props = defineProps({
   show: Boolean,
-  item: Object,
+  item: Number,
 })
 defineEmits(['close', 'accept'])
-const store = useDefaultStore()
 </script>
 
 <template>

@@ -19,7 +19,7 @@ if (!store.accessToken) {
     <div v-if="!store.accessToken" class="flex flex-col md:flex-row">
       <input id="email" v-model="store.formData.email" class="input text-center md:my-2" type="email" placeholder="email">
       <input id="password" v-model="store.formData.password" class="input text-center my-2 md:m-2" type="password" placeholder="password">
-      <button id="loginButton" class="btn w-50 md:m-y-auto mx-auto b-blue" type="button" @click="store.getAuth">
+      <button id="loginButton" class="btn w-50 md:m-y-auto mx-auto" type="button" @click="store.getAuth">
         Login
       </button>
     </div>
@@ -27,7 +27,7 @@ if (!store.accessToken) {
       <div class="info m-2">
         Hello {{ store.formData.email }}
       </div>
-      <button id="logoutButton" class="btn" type="button" @click="store.accessToken = ''">
+      <button id="logoutButton" class="btn md:m-y-auto mx-auto w-50" type="button" @click="store.accessToken = ''">
         Logout
       </button>
     </div>

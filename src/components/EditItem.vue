@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import useVueLidate from '@vuelidate/core'
 import { maxLength, minLength, numeric, required } from '@vuelidate/validators'
-const props = defineProps({
-  item: Object,
-})
+
 const store = useDefaultStore()
 store.getCategories()
 
@@ -84,8 +82,7 @@ function catchError() {
       <button id="myBtn" :disabled="v$.$invalid" class="btn" :class="{
         error: store.status === 'error',
         sending: store.status === 'sending',
-        success: store.status === 'success',
-        def: store.status === '',
+        success: store.status === 'success'
       }" type="submit" @click="saveItem()">
         {{ store.statusButton }}
       </button>
