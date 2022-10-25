@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { Product } from '../types'
-
 const store = useDefaultStore()
 store.getCategories()
-
 function saveItem() {
   store.status = 'sending'
   store.statusButton = 'SENDING...'

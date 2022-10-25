@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     copy: typeof import('./components/EditItem copy.vue')['default']
     EditItem: typeof import('./components/EditItem.vue')['default']
+    FormErrors: typeof import('./components/FormErrors.vue')['default']
     NewItem: typeof import('./components/NewItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
