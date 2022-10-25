@@ -17,9 +17,9 @@ if (!store.accessToken) {
 <template>
   <div class="h-auto m-2">
     <div v-if="!store.accessToken" class="flex flex-col md:flex-row">
-      <input id="email" v-model="store.formData.email" class="form-input text-center text-black" type="text">
-      <input id="password" v-model="store.formData.password" class="form-input text-center text-black" type="password">
-      <button id="myBtn" class="button" type="button" @click="store.getWeather">
+      <input id="email" v-model="store.formData.email" class="input text-center md:my-2" type="email" placeholder="email">
+      <input id="password" v-model="store.formData.password" class="input text-center my-2 md:m-2" type="password" placeholder="password">
+      <button id="loginButton" class="btn w-50 md:m-y-auto mx-auto b-blue" type="button" @click="store.getAuth">
         Login
       </button>
     </div>
@@ -27,7 +27,7 @@ if (!store.accessToken) {
       <div class="info m-2">
         Hello {{ store.formData.email }}
       </div>
-      <button id="myBtn" class="button" type="button" @click="store.accessToken = ''">
+      <button id="logoutButton" class="btn" type="button" @click="store.accessToken = ''">
         Logout
       </button>
     </div>

@@ -6,7 +6,6 @@ import Pages from 'vite-plugin-pages'
 import Unocss from 'unocss/vite'
 import { presetUno, transformerDirectives } from 'unocss'
 import presetDaisy from 'unocss-preset-daisy'
-import { presetForms } from '@julr/unocss-preset-forms'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +13,7 @@ export default defineConfig({
     Vue(),
     Unocss({
       transformers: [transformerDirectives()],
-      presets: [presetUno(), presetDaisy(), presetForms()],
+      presets: [presetUno(), presetDaisy()],
       shortcuts: {
         error: 'bg-red-500/20',
         sending: 'bg-yellow-500/20',

@@ -60,7 +60,7 @@ getProduct()
       </button>
 
       <Teleport to="body">
-        <TheModal :show="showModal" @close="showModal = false" @accept="removeItem()" />
+        <TheModal :show="showModal" @close="showModal = false" @accept="removeItem()" :item="props.id" />
       </Teleport>
     </div>
     <div v-else-if="store.status === 'sending'">

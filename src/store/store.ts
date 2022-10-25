@@ -13,9 +13,10 @@ export const useDefaultStore = defineStore('defaultStore', {
     product: {} as Product,
     status: '' as String,
     statusButton: 'SEND' as String,
+    page: 1
   }),
   actions: {
-    async getWeather() {
+    async getAuth() {
       const data = {
         email: this.formData.email,
         password: this.formData.password,
@@ -36,8 +37,8 @@ export const useDefaultStore = defineStore('defaultStore', {
           console.error('Error:', error)
         })
     },
-    async getProducts(offset = 0) {
-      await fetch(`https://api.escuelajs.co/api/v1/products?limit=10&offset=${offset}`,
+    async getProducts() {
+      await fetch(`https://api.escuelajs.co/api/v1/products?limit=10&offset=${10 * (this.page - 1)}`,
       )
         .then(response => response.json())
         .then((data) => {

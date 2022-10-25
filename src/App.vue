@@ -9,7 +9,10 @@ useHead({
 </script>
 
 <template>
-  <div id="wrapper" class="flex flex-col w-full h-full">
+  <div
+    id="wrapper"
+    class="flex flex-col w-full h-full"
+  >
     <TheHeader />
     <main>
       <RouterView />

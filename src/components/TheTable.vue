@@ -22,11 +22,17 @@ store.getProducts()
           {{ item.price }} USD
         </td>
         <td>
-          <router-link v-if="store.accessToken" :to="`/products/${item.id}`" replace>
+          <router-link v-if="store.accessToken" :to="`/products/${item.id}`" title="Edit Product" replace>
             <img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v1.png">
           </router-link>
         </td>
       </tr>
     </table>
+    <div class="btn-group m-x-auto">
+      <button class="btn btn-outline" v-if="store.page > 1" @click="store.page--, store.getProducts()">Previous
+        page</button>
+      -{{ store.page }}-
+      <button class="btn btn-outline" @click="store.page++, store.getProducts()">Next page</button>
+    </div>
   </div>
 </template>

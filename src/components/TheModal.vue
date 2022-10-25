@@ -9,23 +9,35 @@ const store = useDefaultStore()
 
 <template>
   <Transition name="modal">
-    <div v-if="props.show" class="modal-mask">
+    <div
+      v-if="props.show"
+      class="modal-mask"
+    >
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header flex justify-end">
-            <button class="modal-button-close" @click="$emit('close')">
+            <button
+              class="modal-button-close"
+              @click="$emit('close')"
+            >
               X
             </button>
           </div>
           <div class="modal-content flex flex-col">
-            <span class="text-black m-y-8">
-              Delete item with name {{ store.product.title }}?
+            <span class=" m-y-8">
+              Delete item with id {{ props.item }}?
             </span>
             <div class="flex flex-row justify-end">
-              <button class="modal-button" @click="$emit('close')">
+              <button
+                class="modal-button"
+                @click="$emit('close')"
+              >
                 Cancel
               </button>
-              <button class="modal-button" @click="$emit('accept')">
+              <button
+                class="modal-button"
+                @click="$emit('accept')"
+              >
                 Accept
               </button>
             </div>
@@ -64,6 +76,7 @@ const store = useDefaultStore()
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   display: flex-column;
+  color: #000;
 }
 
 .modal-button {
