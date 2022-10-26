@@ -20,4 +20,5 @@ export interface Product {
   category?: Category
   categoryId?: number
   images: string[]
+  error?: string
 }

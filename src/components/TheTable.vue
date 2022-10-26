@@ -29,10 +29,14 @@ store.getProducts()
       </tr>
     </table>
     <div class="btn-group m-x-auto">
-      <button class="btn btn-outline" v-if="store.page > 1" @click="store.page--, store.getProducts()">Previous
-        page</button>
+      <button v-if="store.page > 1" class="btn btn-outline" @click="store.page--, store.getProducts()">
+        Previous
+        page
+      </button>
       -{{ store.page }}-
-      <button class="btn btn-outline" @click="store.page++, store.getProducts()">Next page</button>
+      <button class="btn btn-outline" @click="store.page++, store.getProducts()">
+        Next page
+      </button>
     </div>
   </div>
 </template>

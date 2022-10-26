@@ -19,6 +19,8 @@ export default defineConfig({
         sending: 'bg-yellow-500/20',
         success: 'bg-green-500/20',
         def: 'bg-blue-500/20',
+        btn: 'm-x-auto md:m-2 m-y-1 w-40 h-10',
+        inputLogin: 'm-x-auto m-y-1 md:m-2 w-full max-w-md p-2',
       },
     }),
     // https://github.com/antfu/unplugin-auto-import

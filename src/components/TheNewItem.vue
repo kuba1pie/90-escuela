@@ -2,6 +2,7 @@
 import useVueLidate from '@vuelidate/core'
 import { maxLength, minLength, numeric, required } from '@vuelidate/validators'
 import type { Product } from '../types'
+const showModal = ref(false)
 
 const store = useDefaultStore()
 
@@ -38,7 +39,7 @@ function saveItem(content: Product) {
     .then((response) => {
       if (response.status === 201) {
         store.status = 'success'
-        store.statusButton = 'SUCCESS'
+        store.statusButton = 'Successfully created product'
       }
       else {
         catchError()
@@ -57,46 +58,56 @@ function catchError() {
 </script>
 
 <template>
-  <div id="c-EditItem" class="c-theForm card md:w-md text-center flex flex-col mx-auto my-10 b-2 p-2">
+  <div id="c-EditItem" class="c-theForm card w-lg text-center flex flex-col mx-auto my-10 b-2 p-2">
     <h2>Create new Item</h2>
     <div class="form-control">
       <form action="#" class="flex flex-col">
         <label class="label" for="title">Title</label>
-        <input id="title" v-model="newItem.title" class="input input-bordered  text-center " type="text" placeholder="Title"
-          :class="{ red: v$.title.$error }" @blur="v$.title.$touch">
+        <input
+          id="title" v-model="newItem.title" class="input input-bordered  text-center " type="text"
+          placeholder="Title" :class="{ red: v$.title.$error }" @blur="v$.title.$touch"
+        >
         <FormErrors :errors="v$.title.$errors" />
 
         <label class="label" for="description">Description</label>
-        <input id="description" v-model="newItem.description" class="input input-bordered  text-center " type="text"
-          placeholder="Description" :class="{ red: v$.title.$error }" @blur="v$.description.$touch">
+        <input
+          id="description" v-model="newItem.description" class="input input-bordered  text-center " type="text"
+          placeholder="Description" :class="{ red: v$.title.$error }" @blur="v$.description.$touch"
+        >
         <FormErrors :errors="v$.description.$errors" />
 
         <label class="label" for="price">Price</label>
-        <input id="price" v-model="newItem.price" class="input input-bordered  text-center " type="text" placeholder="Price"
-          :class="{ red: v$.price.$error }" @blur="v$.price.$touch">
+        <input
+          id="price" v-model="newItem.price" class="input input-bordered  text-center " type="text"
+          placeholder="Price" :class="{ red: v$.price.$error }" @blur="v$.price.$touch"
+        >
         <FormErrors :errors="v$.price.$errors" />
 
         <label class="label" for="category">Category</label>
-        <select id="category" v-model="newItem.categoryId" class="input input-bordered  text-center " placeholder="Category"
-          :class="{ red: v$.title.$error }" @blur="v$.description.$touch">
-          <option v-for="option in store.categories" :value="option.id" :key="option.id">
+        <select
+          id="category" v-model="newItem.categoryId" class="input input-bordered  text-center "
+          placeholder="Category" :class="{ red: v$.title.$error }" @blur="v$.description.$touch"
+        >
+          <option value="" selected hidden>
+            Pick a category
+          </option>
+          <option v-for="option in store.categories" :key="option.id" :value="option.id">
             {{ option.name }}
           </option>
         </select>
         <FormErrors :errors="v$.categoryId.$errors" />
 
-        <button id="myBtn" :disabled="v$.$invalid" class="btn" :class="{
-          error: store.status === 'error',
-          sending: store.status === 'sending',
-          success: store.status === 'success',
-          def: store.status === '',
-          disabled: v$.disabled
-        }" type="submit" @click="saveItem(newItem)">
-          {{ store.statusButton }}
+        <button
+          id="myBtn" :disabled="v$.$invalid" class="btn" :class="{
+            disabled: v$.disabled,
+          }" type="button" @click="showModal = true"
+        >
+          Add Item
         </button>
       </form>
-
+      <Teleport to="body">
+        <ConfirmModal :show="showModal" content="Create new item?" @close="showModal = false, store.status = '', store.statusButton = ''" @accept="saveItem(newItem)" />
+      </Teleport>
     </div>
-
   </div>
 </template>
