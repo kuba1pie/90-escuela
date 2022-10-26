@@ -4,42 +4,43 @@ const props = defineProps({
   content: String,
 })
 defineEmits(['close', 'accept'])
+const store = useDefaultStore()
 </script>
 
 <template>
   <Transition name="modal">
-    <div
-      v-if="props.show"
-      class="modal-mask"
-    >
+    <div v-if="props.show" class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container b-2">
           <div class="modal-header flex justify-end">
-            <button
-              class="modal-button-close"
-              @click="$emit('close')"
-            >
+            <button class="modal-button-close" @click="$emit('close')">
               X
             </button>
           </div>
-          <div class="modal-content flex flex-col">
+          <div v-if="store.status === ''" class="modal-content flex flex-col">
             <span class="m-y-8 text-center text-6">
               {{ props.content }}
             </span>
             <div class="flex flex-row justify-end">
-              <button
-                class="btn m-x-2"
-                @click="$emit('close')"
-              >
+              <button class="btn m-x-2" @click="$emit('close')">
                 Cancel
               </button>
-              <button
-                class="btn"
-                @click="$emit('accept')"
-              >
+              <button class="btn" @click="$emit('accept')">
                 Accept
               </button>
             </div>
+          </div>
+          <div v-else class="modal-content flex flex-col">
+            <span
+              id="myBtn" class="p-2 my-2 text-center block" :class="{
+                error: store.status === 'error',
+                sending: store.status === 'sending',
+                success: store.status === 'success',
+                hidden: store.status === '',
+              }" type="button"
+            >
+              {{ store.statusButton }}
+            </span>
           </div>
         </div>
       </div>

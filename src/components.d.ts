@@ -7,15 +7,24 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    copy: typeof import('./components/EditItem copy.vue')['default']
+    AccessBanner: typeof import('./components/AccessBanner.vue')['default']
+    ConfirmModal: typeof import('./components/ConfirmModal.vue')['default']
+    copy: typeof import('./components/TheTable copy.vue')['default']
     EditItem: typeof import('./components/EditItem.vue')['default']
     FormErrors: typeof import('./components/FormErrors.vue')['default']
     NewItem: typeof import('./components/NewItem.vue')['default']
+    RemoveItem: typeof import('./components/RemoveItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TheBanne: typeof import('./components/TheBanne.vue')['default']
+    'TheBanne.vue': typeof import('./components/TheBanne.vue.vue')['default']
+    TheBanner: typeof import('./components/TheBanner.vue')['default']
+    TheEditItem: typeof import('./components/TheEditItem.vue')['default']
     TheHeader: typeof import('./components/TheHeader.vue')['default']
     TheLogin: typeof import('./components/TheLogin.vue')['default']
     TheModal: typeof import('./components/TheModal.vue')['default']
+    TheNewItem: typeof import('./components/TheNewItem.vue')['default']
+    TheRemoveItem: typeof import('./components/TheRemoveItem.vue')['default']
     TheTable: typeof import('./components/TheTable.vue')['default']
   }
 }

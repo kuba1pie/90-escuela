@@ -38,7 +38,7 @@ function saveItem() {
 function setStatus(response: Response) {
   if (response.status === 200) {
     store.status = 'success'
-    store.statusButton = 'SUCCESS'
+    store.statusButton = 'Successfully edited product'
   }
   else {
     catchError()
@@ -53,7 +53,7 @@ function catchError() {
 </script>
 
 <template>
-  <div id="c-EditItem" class="c-theForm card md:w-md text-center flex flex-col mx-auto my-10 b-2 p-2">
+  <div id="c-EditItem" class="c-theForm card w-lg text-center flex flex-col mx-auto my-10 b-2 p-2">
     <h2>Edit Item</h2>
     <div class="form-control">
       <form action="#" class="flex flex-col">
@@ -91,18 +91,16 @@ function catchError() {
 
         <button
           id="myBtn" :disabled="v$.$invalid" class="btn" :class="{
-            error: store.status === 'error',
-            sending: store.status === 'sending',
-            success: store.status === 'success',
+            disabled: v$.disabled,
           }" type="button" @click="showModal = true"
         >
-          {{ store.statusButton }}
+          Edit Item
         </button>
       </form>
       <Teleport to="body">
-        <TheModal
-          :show="showModal" :content="`Save item with id ${store.product.id}?`" @close="showModal = false"
-          @accept="saveItem()"
+        <ConfirmModal
+          :show="showModal" :content="`Save item with id ${store.product.id}?`"
+          @close="showModal = false, store.status = '', store.statusButton = ''" @accept="saveItem()"
         />
       </Teleport>
     </div>
