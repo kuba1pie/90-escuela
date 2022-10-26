@@ -5,8 +5,8 @@ store.getCategories()
 
 <template>
   <main>
-    <div id="v-index">
-      <TheTable />
+    <div id="v-new">
+      <NewItem v-if="store.accessToken" />
     </div>
   </main>
 </template>

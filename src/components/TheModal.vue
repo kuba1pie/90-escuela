@@ -13,7 +13,7 @@ defineEmits(['close', 'accept'])
       class="modal-mask"
     >
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container b-2">
           <div class="modal-header flex justify-end">
             <button
               class="modal-button-close"
@@ -23,18 +23,18 @@ defineEmits(['close', 'accept'])
             </button>
           </div>
           <div class="modal-content flex flex-col">
-            <span class=" m-y-8">
-              {{props.content}}
+            <span class="m-y-8 text-center text-6">
+              {{ props.content }}
             </span>
             <div class="flex flex-row justify-end">
               <button
-                class="modal-button"
+                class="btn m-x-2"
                 @click="$emit('close')"
               >
                 Cancel
               </button>
               <button
-                class="modal-button"
+                class="btn"
                 @click="$emit('accept')"
               >
                 Accept
@@ -70,23 +70,12 @@ defineEmits(['close', 'accept'])
   max-width: 25rem;
   margin: 0px auto;
   padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 20px;
+  background-color: #1e293d;
+  border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   display: flex-column;
-  color: #000;
-}
-
-.modal-button {
-  border-radius: 28px;
-  border: 1px solid #e5e5e5;
-  display: inline-block;
-  cursor: pointer;
-  font-size: 17px;
-  padding: 16px 31px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #a4d0a2;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .modal-enter-from {

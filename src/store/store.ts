@@ -13,7 +13,7 @@ export const useDefaultStore = defineStore('defaultStore', {
     product: {} as Product,
     status: '' as String,
     statusButton: 'SEND' as String,
-    page: 1
+    page: 1,
   }),
   actions: {
     async getAuth() {

@@ -45,21 +45,26 @@ getProduct()
 </script>
 
 <template>
-  <div v-if="store.accessToken" id="v-Id" class="flex flex-col items-center w-full">
+  <div v-if="store.accessToken" id="v-Id" class="flex flex-col items-center w-full min-h-lg">
     <div v-if="store.status === 'success'" id="success" class="w-full flex flex-col items-center">
       <EditItem />
-      <button id="show-modal" class="btn" :class="{
-        error: store.status === 'error',
-        sending: store.status === 'sending',
-        success: store.status === 'success',
-        def: store.status === '',
-      }" @click="showModal = true">Remove Item
+      <button
+        id="show-modal" class="btn flex items-center" :class="{
+          error: store.status === 'error',
+          sending: store.status === 'sending',
+          success: store.status === 'success',
+          def: store.status === '',
+        }" @click="showModal = true"
+      >
+        Remove Item
         <img src="https://img.icons8.com/sf-black-filled/30/undefined/recycle-bin.png">
       </button>
 
       <Teleport to="body">
-        <TheModal :show="showModal" @close="showModal = false" @accept="removeItem()"
-          :content="'Delete item with id ' + props.id+ '?'"  />
+        <TheModal
+          :show="showModal" :content="`Delete item with id ${props.id}?`" @close="showModal = false"
+          @accept="removeItem()"
+        />
       </Teleport>
     </div>
     <div v-else-if="store.status === 'sending'">

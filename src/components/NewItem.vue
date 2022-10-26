@@ -63,8 +63,8 @@ function catchError() {
     <div class="form-control">
       <form action="#" class="flex flex-col">
         <label class="label" for="title">Title</label>
-        <input id="title" v-model="newItem.title" class="input input-bordered  text-center " type="text" placeholder="Title"
-          :class="{ red: v$.title.$error }" @blur="v$.title.$touch">
+        <input id="title" v-model="newItem.title" class="input input-bordered  text-center " type="text"
+          placeholder="Title" :class="{ red: v$.title.$error }" @blur="v$.title.$touch">
         <FormErrors :errors="v$.title.$errors" />
 
         <label class="label" for="description">Description</label>
@@ -73,14 +73,17 @@ function catchError() {
         <FormErrors :errors="v$.description.$errors" />
 
         <label class="label" for="price">Price</label>
-        <input id="price" v-model="newItem.price" class="input input-bordered  text-center " type="text" placeholder="Price"
-          :class="{ red: v$.price.$error }" @blur="v$.price.$touch">
+        <input id="price" v-model="newItem.price" class="input input-bordered  text-center " type="text"
+          placeholder="Price" :class="{ red: v$.price.$error }" @blur="v$.price.$touch">
         <FormErrors :errors="v$.price.$errors" />
 
         <label class="label" for="category">Category</label>
-        <select id="category" v-model="newItem.categoryId" class="input input-bordered  text-center " placeholder="Category"
-          :class="{ red: v$.title.$error }" @blur="v$.description.$touch">
-          <option v-for="option in store.categories" :value="option.id" :key="option.id">
+        <select id="category" v-model="newItem.categoryId" class="input input-bordered  text-center "
+          placeholder="Category" :class="{ red: v$.title.$error }" @blur="v$.description.$touch">
+          <option value="" selected hidden>
+            Pick a category
+          </option>
+          <option v-for="option in store.categories" :key="option.id" :value="option.id">
             {{ option.name }}
           </option>
         </select>
@@ -91,16 +94,14 @@ function catchError() {
           sending: store.status === 'sending',
           success: store.status === 'success',
           def: store.status === '',
-          disabled: v$.disabled
+          disabled: v$.disabled,
         }" type="button" @click="showModal = true">
           {{ store.statusButton }}
         </button>
       </form>
       <Teleport to="body">
-        <TheModal :show="showModal" @close="showModal = false" @accept="saveItem(newItem)"
-          :content="'Create new item?'" />
+        <TheModal :show="showModal" content="Create new item?" @close="showModal = false" @accept="saveItem(newItem)" />
       </Teleport>
     </div>
-
   </div>
 </template>
