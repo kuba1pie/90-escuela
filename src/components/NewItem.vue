@@ -2,6 +2,7 @@
 import useVueLidate from '@vuelidate/core'
 import { maxLength, minLength, numeric, required } from '@vuelidate/validators'
 import type { Product } from '../types'
+const showModal = ref(false)
 
 const store = useDefaultStore()
 
@@ -57,7 +58,7 @@ function catchError() {
 </script>
 
 <template>
-  <div id="c-EditItem" class="c-theForm card md:w-md text-center flex flex-col mx-auto my-10 b-2 p-2">
+  <div id="c-EditItem" class="c-theForm card w-full md:w-md text-center flex flex-col mx-auto my-10 b-2 p-2">
     <h2>Create new Item</h2>
     <div class="form-control">
       <form action="#" class="flex flex-col">
@@ -91,11 +92,14 @@ function catchError() {
           success: store.status === 'success',
           def: store.status === '',
           disabled: v$.disabled
-        }" type="submit" @click="saveItem(newItem)">
+        }" type="button" @click="showModal = true">
           {{ store.statusButton }}
         </button>
       </form>
-
+      <Teleport to="body">
+        <TheModal :show="showModal" @close="showModal = false" @accept="saveItem(newItem)"
+          :content="'Create new item?'" />
+      </Teleport>
     </div>
 
   </div>

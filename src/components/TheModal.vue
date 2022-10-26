@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps({
   show: Boolean,
-  item: Number,
+  content: String,
 })
 defineEmits(['close', 'accept'])
 </script>
@@ -24,7 +24,7 @@ defineEmits(['close', 'accept'])
           </div>
           <div class="modal-content flex flex-col">
             <span class=" m-y-8">
-              Delete item with id {{ props.item }}?
+              {{props.content}}
             </span>
             <div class="flex flex-row justify-end">
               <button

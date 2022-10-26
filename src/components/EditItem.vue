@@ -4,6 +4,7 @@ import { maxLength, minLength, numeric, required } from '@vuelidate/validators'
 
 const store = useDefaultStore()
 store.getCategories()
+const showModal = ref(false)
 
 const rules = reactive({
   title: { required, minLength: minLength(3), maxLength: maxLength(64) },
@@ -54,39 +55,46 @@ function catchError() {
 <template>
   <div id="c-EditItem" class="c-theForm card md:w-md text-center flex flex-col mx-auto my-10 b-2 p-2">
     <h2>Edit Item</h2>
-    <form action="#" class="flex flex-col">
-      <label for="title">Title</label>
-      <input id="title" v-model="newItem.title" class="input" type="text"
-        placeholder="Title" :class="{ red: v$.title.$error }" @blur="v$.title.$touch">
-      <FormErrors :errors="v$.title.$errors" />
+    <div class="form-control">
+      <form action="#" class="flex flex-col">
+        <label for="title">Title</label>
+        <input id="title" v-model="newItem.title" class="input input-bordered  text-center" type="text"
+          placeholder="Title" :class="{ red: v$.title.$error }" @blur="v$.title.$touch">
+        <FormErrors :errors="v$.title.$errors" />
 
-      <label for="description">Description</label>
-      <input id="description" v-model="newItem.description" class="input" type="text"
-        placeholder="Description" :class="{ red: v$.title.$error }" @blur="v$.description.$touch">
-      <FormErrors :errors="v$.description.$errors" />
+        <label for="description">Description</label>
+        <input id="description" v-model="newItem.description" class="input input-bordered  text-center" type="text"
+          placeholder="Description" :class="{ red: v$.title.$error }" @blur="v$.description.$touch">
+        <FormErrors :errors="v$.description.$errors" />
 
-      <label for="price">Price</label>
-      <input id="price" v-model="newItem.price" class="input" type="text"
-        placeholder="Price" :class="{ red: v$.price.$error }" @blur="v$.price.$touch">
-      <FormErrors :errors="v$.price.$errors" />
+        <label for="price">Price</label>
+        <input id="price" v-model="newItem.price" class="input input-bordered  text-center" type="text"
+          placeholder="Price" :class="{ red: v$.price.$error }" @blur="v$.price.$touch">
+        <FormErrors :errors="v$.price.$errors" />
 
-      <label for="category">Category</label>
-      <select id="category" v-model="newItem.categoryId" class="input"
-        placeholder="Category" :class="{ red: v$.title.$error }" @blur="v$.description.$touch">
-        <option v-for="option in store.categories" :value="option.id" :key="option.id">
-          {{ option.name }}
-        </option>
-      </select>
-      <FormErrors :errors="v$.categoryId.$errors" />
+        <label for="category">Category</label>
+        <select id="category" v-model="newItem.categoryId" class="input input-bordered  text-center"
+          placeholder="Category" :class="{ red: v$.title.$error }" @blur="v$.description.$touch">
+          <option v-for="option in store.categories" :value="option.id" :key="option.id">
+            {{ option.name }}
+          </option>
+        </select>
+        <FormErrors :errors="v$.categoryId.$errors" />
 
-      <button id="myBtn" :disabled="v$.$invalid" class="btn" :class="{
-        error: store.status === 'error',
-        sending: store.status === 'sending',
-        success: store.status === 'success'
-      }" type="submit" @click="saveItem()">
-        {{ store.statusButton }}
-      </button>
-    </form>
+        <button id="myBtn" :disabled="v$.$invalid" class="btn" :class="{
+          error: store.status === 'error',
+          sending: store.status === 'sending',
+          success: store.status === 'success'
+        }" type="button" @click="showModal = true">
+          {{ store.statusButton }}
+        </button>
+      </form>
+            <Teleport to="body">
+              <TheModal :show="showModal" @close="showModal = false" @accept="saveItem()"
+                :content="'Save item with id ' + store.product.id+ '?'" />
+            </Teleport>
+    </div>
+
 
   </div>
 </template>
